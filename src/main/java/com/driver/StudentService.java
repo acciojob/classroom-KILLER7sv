@@ -41,6 +41,12 @@ public class StudentService {
         for(String student : studentRepository.studentMap.keySet()){
             students.add(student);
         }
+        for(String teacher : studentRepository.teacherStudentMap.keySet()){
+            List<String> curr = studentRepository.teacherStudentMap.get(teacher);
+            for(String student : curr){
+                students.add(student);
+            }
+        }
         return students;
     }
 
