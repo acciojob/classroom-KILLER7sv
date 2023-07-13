@@ -2,6 +2,7 @@ package com.driver;
 
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class StudentRepository {
     }
 
     public void addStudentTeacherPair(String student, String teacher) {
-        List<String> curr = teacherStudentMap.get(teacher);
+        List<String> curr = teacherStudentMap.getOrDefault(teacher,new ArrayList<>());
         curr.add(student);
         teacherStudentMap.put(teacher , curr);
     }

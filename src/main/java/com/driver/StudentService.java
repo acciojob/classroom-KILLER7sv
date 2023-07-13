@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -37,19 +38,18 @@ public class StudentService {
 
     public List<String> getAllStudents() {
         List<String> students = new ArrayList<>();
-        students.addAll(studentRepository.studentMap.keySet());
+        for(String student : studentRepository.studentMap.keySet()){
+            students.add(student);
+        }
         return students;
     }
 
     public void deleteTeacherByName(String teacher) {
         studentRepository.teacherMap.remove(teacher);
-        studentRepository.teacherStudentMap.remove(teacher);
+//        studentRepository.teacherStudentMap.remove(teacher);
     }
 
     public void deleteAllTeachers() {
-        for(String teacher : studentRepository.teacherMap.keySet()){
-            studentRepository.teacherMap.remove(teacher);
-            studentRepository.teacherStudentMap.remove(teacher);
-        }
+        studentRepository.teacherMap = new HashMap<>();
     }
 }
